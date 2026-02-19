@@ -7,6 +7,7 @@
 	import DemoSection from "$lib/components/DemoSection.svelte";
 	import DataOutput from "$lib/components/DataOutput.svelte";
 	import SchemaEditor from "$lib/components/SchemaEditor.svelte";
+	import { createSeoMeta, jsonLd } from "$lib/seo";
 
 	type AnyObjectSchema = z.ZodObject<any>;
 	const EMPTY_SCHEMA: AnyObjectSchema = z.object({});
@@ -84,7 +85,92 @@
 	});
 	let shapeData: Record<string, any> = $state({});
 
+	const seo = createSeoMeta({
+		title: "Svelte 5 Schema-Driven Form Generator (JSON Schema + Zod) | autoform-svelte",
+		description:
+			"Generate schema-driven forms in Svelte 5 from JSON Schema or Zod. Supports defaults, enums, arrays, nested objects, and customization hooks.",
+		path: "/",
+		keywords: [
+			"svelte form generator",
+			"schema driven forms svelte",
+			"svelte json schema form",
+			"svelte zod form",
+			"dynamic form generator svelte",
+		],
+	});
+
+	const softwareApplicationLd = {
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		name: "autoform-svelte",
+		applicationCategory: "DeveloperApplication",
+		operatingSystem: "Web",
+		programmingLanguage: ["TypeScript", "Svelte"],
+		url: seo.canonical,
+		description: seo.description,
+		codeRepository: "https://github.com/convex-works/autoform-svelte",
+		license: "https://spdx.org/licenses/MIT.html",
+	};
+
+	const faqEntries = [
+		{
+			question: "Can autoform-svelte generate forms from JSON Schema?",
+			answer:
+				"Yes. JSON Schema is supported out of the box through the default jsonSchemaAdapter.",
+		},
+		{
+			question: "Can I generate forms from a Zod schema in Svelte 5?",
+			answer:
+				"Yes. Use zodAdapter with Zod v4 to convert a Zod schema to JSON Schema and render the form.",
+		},
+		{
+			question: "Is this only for admin or internal tools?",
+			answer:
+				"It is useful for admin and internal tools, but it can also power product settings and CRUD workflows where schema-driven forms are a fit.",
+		},
+		{
+			question: "Can I customize generated fields?",
+			answer:
+				"Yes. You can customize labels, placeholders, widgets, and object behavior via schema metadata and by providing custom adapters or themes.",
+		},
+		{
+			question: "What are some common use cases of this library?",
+			answer: "Admin panel forms, internal tools, CRUD workflows, and settings pages built from existing schemas"
+		}
+	];
+
+	const faqPageLd = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqEntries.map((entry) => ({
+			"@type": "Question",
+			name: entry.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: entry.answer,
+			},
+		})),
+	};
+
 </script>
+
+<svelte:head>
+	<title>{seo.title}</title>
+	<meta name="description" content={seo.description} />
+	<meta name="keywords" content={seo.keywords} />
+	<link rel="canonical" href={seo.canonical} />
+	<meta property="og:title" content={seo.title} />
+	<meta property="og:description" content={seo.description} />
+	<meta property="og:type" content={seo.type} />
+	<meta property="og:url" content={seo.canonical} />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content={seo.title} />
+	<meta name="twitter:description" content={seo.description} />
+	{@html jsonLd(softwareApplicationLd)}
+	{@html jsonLd(faqPageLd)}
+	<!-- {@html jsonLd(softwareApplicationLd)}</script> -->
+	<!-- <script type="application/ld+json">{@html jsonLd(faqPageLd)}</script> -->
+</svelte:head>
 
 <AutoformProvider theme={shadcnTheme} adapter={zodAdapter}>
 <div class="min-h-screen">
@@ -93,8 +179,8 @@
 		<div class="max-w-5xl mx-auto px-6 py-20 text-center">
 			<h1 class="text-5xl font-extrabold tracking-tight">autoform-svelte</h1>
 			<p class="mt-4 text-xl text-muted-foreground max-w-2xl mx-auto">
-				Schema-first forms for Svelte 5. Out of the box support for <a href="https://zod.dev" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">Zod</a>,
-				and <a href="https://www.shadcn-svelte.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">shadcn-svelte</a>.
+				Schema-driven form generator for Svelte 5. Generate forms from JSON Schema or <a href="https://zod.dev" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">Zod</a>,
+				with support for <a href="https://www.shadcn-svelte.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">shadcn-svelte</a> theming.
 			</p>
 			<div class="mt-6 max-w-md mx-auto">
 				<CodeBlock code="bun add autoform-svelte zod" lang="bash" />
@@ -146,12 +232,13 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</header>
 
 	<main class="max-w-5xl mx-auto px-6 py-16 space-y-24">
 		<!-- Quick Start -->
-		<section class="space-y-4">
+		<section id="quick-start" class="space-y-4">
 			<h2 class="text-3xl font-bold">Quick Start</h2>
 			<p class="text-muted-foreground">Define a schema, pass the adapter, and render <code class="text-sm bg-muted px-1.5 py-0.5 rounded">&lt;Autoform&gt;</code>.</p>
 			<CodeBlock code={`<script lang="ts">
@@ -168,7 +255,7 @@
 <Autoform {schema} adapter={zodAdapter} onsubmit={(e) => console.log(e.data)} />`} />
 		</section>
 
-		<section class="space-y-4">
+		<section id="customization" class="space-y-4">
 			<h2 class="text-3xl font-bold">Field Metadata</h2>
 			<p class="text-muted-foreground">
 				Customize widgets, placeholders, and object key reordering with
@@ -227,7 +314,7 @@
 		</section>
 
 		<!-- Theming -->
-		<section class="space-y-6">
+		<section id="adapters" class="space-y-6">
 			<h2 class="text-3xl font-bold">Theming</h2>
 			<p class="text-muted-foreground">
 				Autoform ships with a native HTML theme by default. For styled forms, use the shadcn-svelte theme or create your own.
@@ -342,6 +429,18 @@ export const shadcnTheme = createShadcnTheme({
 						</tbody>
 					</table>
 				</div>
+			</div>
+		</section>
+
+		<section class="space-y-6">
+			<h2 class="text-3xl font-bold">FAQ</h2>
+			<div class="space-y-4">
+				{#each faqEntries as entry}
+					<div class="rounded-lg border p-4">
+						<h3 class="text-lg font-semibold">{entry.question}</h3>
+						<p class="mt-2 text-muted-foreground">{entry.answer}</p>
+					</div>
+				{/each}
 			</div>
 		</section>
 	</main>

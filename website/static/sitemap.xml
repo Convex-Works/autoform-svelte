@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://autoform-svelte.pages.dev/</loc>
+  </url>
+  <url>
+    <loc>https://autoform-svelte.pages.dev/svelte-json-schema-form</loc>
+  </url>
+  <url>
+    <loc>https://autoform-svelte.pages.dev/svelte-zod-form</loc>
+  </url>
+  <url>
+    <loc>https://autoform-svelte.pages.dev/alternatives/react-jsonschema-form</loc>
+  </url>
+</urlset>

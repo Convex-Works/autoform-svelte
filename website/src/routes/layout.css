@@ -1,25 +1,41 @@
 @import 'tailwindcss';
 
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Bricolage Grotesque';
+	src: url('/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
 @theme inline {
-	--color-background: hsl(0 0% 100%);
-	--color-foreground: hsl(222.2 84% 4.9%);
-	--color-card: hsl(0 0% 100%);
-	--color-card-foreground: hsl(222.2 84% 4.9%);
-	--color-popover: hsl(0 0% 100%);
-	--color-popover-foreground: hsl(222.2 84% 4.9%);
-	--color-primary: hsl(222.2 47.4% 11.2%);
-	--color-primary-foreground: hsl(210 40% 98%);
-	--color-secondary: hsl(210 40% 96.1%);
-	--color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-	--color-muted: hsl(210 40% 96.1%);
-	--color-muted-foreground: hsl(215.4 16.3% 46.9%);
-	--color-accent: hsl(210 40% 96.1%);
-	--color-accent-foreground: hsl(222.2 47.4% 11.2%);
+	--color-background: #eeeeee;
+	--color-foreground: #1b1b1b;
+	--color-card: #f7f7f7;
+	--color-card-foreground: #1b1b1b;
+	--color-popover: #f7f7f7;
+	--color-popover-foreground: #1b1b1b;
+	--color-primary: #1919e7;
+	--color-primary-foreground: #ffffff;
+	--color-secondary: #e4e4e4;
+	--color-secondary-foreground: #1b1b1b;
+	--color-muted: #e2e2e2;
+	--color-muted-foreground: #4d4d4d;
+	--color-accent: #1919e7;
+	--color-accent-foreground: #ffffff;
 	--color-destructive: hsl(0 84.2% 60.2%);
 	--color-destructive-foreground: hsl(210 40% 98%);
-	--color-border: hsl(214.3 31.8% 91.4%);
-	--color-input: hsl(214.3 31.8% 91.4%);
-	--color-ring: hsl(222.2 84% 4.9%);
+	--color-border: #d2d2d2;
+	--color-input: #d2d2d2;
+	--color-ring: #1919e7;
 	--radius: 0.5rem;
 }
 
@@ -31,6 +47,16 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+		font-family: 'Inter', sans-serif;
 		font-feature-settings: "rlig" 1, "calt" 1;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
 	}
 }
