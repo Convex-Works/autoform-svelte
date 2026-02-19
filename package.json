@@ -1,6 +1,6 @@
 {
   "name": "autoform-svelte",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Schema-first generated forms for Svelte 5. Supports zod, shadcn-svelte and more!",
   "type": "module",
   "license": "MIT",

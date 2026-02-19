@@ -5,6 +5,9 @@ import path from 'path';
 
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
+	ssr: {
+		noExternal: ['autoform-svelte', 'autoform-svelte/adapters/zod', 'autoform-svelte/themes/shadcn'],
+	},
 	resolve: {
 		alias: {
 			'autoform-svelte/themes/shadcn': path.resolve(__dirname, '../src/lib/themes/shadcn/index.ts'),
