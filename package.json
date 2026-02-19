@@ -1,0 +1,61 @@
+{
+  "name": "autoform-svelte",
+  "version": "0.1.0",
+  "description": "Schema-first auto-generated forms for Svelte with adapter-based schema support",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "svelte": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "svelte": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./adapters": {
+      "types": "./src/lib/adapters/index.ts",
+      "svelte": "./src/lib/adapters/index.ts",
+      "default": "./src/lib/adapters/index.ts"
+    },
+    "./adapters/custom": {
+      "types": "./src/lib/adapters/custom.ts",
+      "svelte": "./src/lib/adapters/custom.ts",
+      "default": "./src/lib/adapters/custom.ts"
+    },
+    "./adapters/zod": {
+      "types": "./src/lib/adapters/zod.ts",
+      "svelte": "./src/lib/adapters/zod.ts",
+      "default": "./src/lib/adapters/zod.ts"
+    },
+    "./themes/shadcn": {
+      "types": "./src/lib/themes/shadcn/index.ts",
+      "svelte": "./src/lib/themes/shadcn/index.ts",
+      "default": "./src/lib/themes/shadcn/index.ts"
+    }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "bun test ./src/lib/core/core.test.ts ./src/lib/adapters/adapters.test.ts"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0",
+    "zod": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^6.2.4"
+  }
+}
