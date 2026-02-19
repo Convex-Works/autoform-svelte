@@ -1,9 +1,10 @@
 {
   "name": "autoform-svelte",
   "version": "0.1.0",
-  "description": "Schema-first auto-generated forms for Svelte with adapter-based schema support",
+  "description": "Schema-first generated forms for Svelte 5. Supports zod, shadcn-svelte and more!",
   "type": "module",
   "license": "MIT",
+  "author": "Convex Works",
   "files": [
     "dist"
   ],
