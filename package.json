@@ -6,7 +6,8 @@
   "license": "MIT",
   "author": "Convex Works",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "main": "./src/index.ts",
   "module": "./src/index.ts",
