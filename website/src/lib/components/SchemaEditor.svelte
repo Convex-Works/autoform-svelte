@@ -124,7 +124,7 @@
 
 <div class="overflow-hidden rounded-lg border border-slate-200 bg-[#f8fafc] text-slate-700">
 	<div class="border-b border-slate-200 px-4 py-2 text-xs font-medium uppercase tracking-wider text-slate-500">
-		Schema (editable)
+		Schema
 	</div>
 	<div bind:this={container} class="schema-editor"></div>
 </div>

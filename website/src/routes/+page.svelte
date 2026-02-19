@@ -25,7 +25,11 @@
 	const contactSchemaInitialCode = `z.object({
   name: z.string().min(1),
   email: z.string().email(),
-  message: z.string(),
+  message: z.string().meta({
+    form: {
+      widget: "textarea"
+    }
+  }),
   newsletter: z.boolean().default(false).meta({
     form: {
       label: "Subscribe to our newsletter",
